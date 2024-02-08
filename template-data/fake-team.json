@@ -1,0 +1,14 @@
+{
+  "teamName": "Test Team",
+  "useCase": "Testing",
+  "captainName": "Captain Test",
+  "captainSkillset": "Testing Skills",
+  "captainDiscordName": "captain_test#1234",
+  "captainCode": "captain123",
+  "gitRepoUrl": "https://github.com/testrepo",
+  "location": "Test City",
+  "preferredTimeToWork": "Morning",
+  "classificationLevel": "CUI",
+  "preferredSkillsets": "Skill1, Skill2",
+  "image": ""
+}

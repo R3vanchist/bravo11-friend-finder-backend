@@ -1,0 +1,6 @@
+CREATE database IF NOT EXISTS team_management;
+USE team_management;
+CREATE TABLE IF NOT EXISTS teams (id INT AUTO_INCREMENT PRIMARY KEY, teamName TEXT, useCase TEXT, captainDiscordName TEXT, captainCode TEXT, gitRepoUrl TEXT, location TEXT, preferredTimeToWork TEXT, classificationLevel TEXT, preferredSkills TEXT, image MEDIUMBLOB);
+CREATE TABLE IF NOT EXISTS usecases (id INT AUTO_INCREMENT PRIMARY KEY, title TEXT, pocName TEXT, pocDiscordName TEXT, company TEXT, desiredSkillset TEXT, description TEXT, classificationLevel TEXT, location TEXT, image MEDIUMBLOB, useCaseCode TEXT, teamId INT, FOREIGN KEY (teamId) REFERENCES teams(id)); 
+CREATE TABLE IF NOT EXISTS members (id INT AUTO_INCREMENT PRIMARY KEY, name TEXT, discordName TEXT, skillsets TEXT, teamId INT, FOREIGN KEY (teamId) REFERENCES teams(id)); 
+CREATE TABLE IF NOT EXISTS team_members (teamId INT, memberId INT, PRIMARY KEY (teamId, memberId), FOREIGN KEY (teamId) REFERENCES teams(id), FOREIGN KEY (memberId) REFERENCES members(id)); 
