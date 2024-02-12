@@ -9,18 +9,18 @@ const addUseCase = async (req, res) => {
     }
 
     // Extract team data from request body
-    const { 
-      title, 
-      description, 
-      pocName, 
-      pocDiscordName, 
-      company, 
-      desiredDeliverable, 
-      hasData, 
-      desiredSkillsets, 
-      classificationLevel, 
-      location, 
-      image 
+    const {
+      title,
+      description,
+      pocName,
+      pocDiscordName,
+      company,
+      desiredDeliverable,
+      hasData,
+      desiredSkillsets,
+      classificationLevel,
+      location,
+      image
     } = req.body;
 
     console.log(title)
@@ -34,7 +34,7 @@ const addUseCase = async (req, res) => {
       company, 
       desiredDeliverable, 
       hasData, 
-      desiredSkillsets, 
+      desiredSkillset, 
       classificationLevel, 
       location, 
       image
@@ -42,7 +42,7 @@ const addUseCase = async (req, res) => {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
 
-    
+
     const values = [
       title,
       description,

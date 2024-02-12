@@ -2,17 +2,17 @@ import pool from '../server/database.js';
 
 const addTeam = async (req, res) => {
   // Extract team data from request body
-  const { 
-    teamName, 
-    useCase,  
-    captainDiscordName, 
-    captainCode, 
-    gitRepoUrl, 
-    location, 
-    preferredTimeToWork, 
-    classificationLevel, 
-    preferredSkillsets, 
-    image 
+  const {
+    teamName,
+    useCase,
+    captainDiscordName,
+    captainCode,
+    gitRepoUrl,
+    location,
+    preferredTimeToWork,
+    classificationLevel,
+    preferredSkillsets,
+    image
   } = req.body;
 
   // Get a connection from the pool
@@ -33,11 +33,11 @@ const addTeam = async (req, res) => {
         location, 
         preferredTimeToWork, 
         classificationLevel, 
-        preferredSkillsets, 
+        preferredSkills, 
         image 
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
-    
+
     const teamValues = [
       teamName,
       useCase,
@@ -81,7 +81,7 @@ const addTeam = async (req, res) => {
           connection.release();
           return res.status(500).send('Error inserting captain member data into the database');
         }
-        
+
         console.log('Inserted data into the members table:', insertResults);
 
         // Construct SQL query to insert teamId into team_members table
@@ -101,12 +101,12 @@ const addTeam = async (req, res) => {
             connection.release();
             return res.status(500).send('Error inserting team member data into the database');
           }
-          
+
           console.log('Inserted data into the team_members table:', teamMemberResults);
 
           // Release the connection back to the pool
           connection.release();
-          
+
           // Send success response
           return res.send('Data inserted successfully');
         });

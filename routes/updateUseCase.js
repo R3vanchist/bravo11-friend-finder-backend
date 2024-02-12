@@ -8,17 +8,18 @@ const updateUseCase = async (req, res) => {
         }
 
         // Assuming the data is sent directly in the body without nesting under params.use_case_object
-        const { 
-            id, 
-            title, 
-            pocName, 
-            pocDiscordName, 
-            company, 
-            desiredDeliverable, 
-            hasData, 
-            desiredSkillsets, 
-            classificationLevel, 
-            location, 
+        const {
+            id,
+            title,
+            description,
+            pocName,
+            pocDiscordName,
+            company,
+            desiredDeliverable,
+            hasData,
+            desiredSkillsets,
+            classificationLevel,
+            location,
             image,
             useCaseCode
         } = req.body;
@@ -29,7 +30,7 @@ const updateUseCase = async (req, res) => {
         }
 
         const getCodeQuery = `SELECT * FROM usecases WHERE useCaseCode = ?`;
-        
+
         connection.query(getCodeQuery, [useCaseCode], (codeError, codeResults) => {
             if (codeError) {
                 console.error('Error fetching use case code: ', codeError);
@@ -49,6 +50,10 @@ const updateUseCase = async (req, res) => {
             if (title !== undefined) {
                 updates.push("title = ?");
                 values.push(title);
+            }
+            if (description !== undefined) {
+                updates.push("description = ?");
+                values.push(description);
             }
             if (pocName !== undefined) {
                 updates.push("pocName = ?");
@@ -71,7 +76,7 @@ const updateUseCase = async (req, res) => {
                 values.push(hasData);
             }
             if (desiredSkillsets !== undefined) {
-                updates.push("desiredSkillsets = ?");
+                updates.push("desiredSkillset = ?");
                 values.push(desiredSkillsets);
             }
             if (classificationLevel !== undefined) {
