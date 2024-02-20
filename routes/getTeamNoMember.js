@@ -7,7 +7,7 @@ function getNoTeamUseCase(req, res) {
             return res.status(500).send('Error connecting to the database');
         }
 
-        connection.query("SELECT teams.id, teamName, useCase, captainDiscordName, gitRepoUrl, location, preferredTimeToWork, classificationLevel, preferredSkillsets FROM teams LEFT JOIN members ON teams.id = members.teamId WHERE teamId IS NULL OR teamId = '';", (queryErr, results) => {
+        connection.query("SELECT DISTINCT teams.id, teams.teamName, teams.useCase, teams.captainDiscordName, teams.gitRepoUrl, teams.location, teams.preferredTimeToWork,teams.classificationLevel, teams.preferredSkillsets FROM teams LEFT JOIN members ON teams.id = members.teamId AND teams.captainDiscordName <> members.discordName WHERE teams.id NOT IN (SELECT teams.id FROM teams JOIN members ON teams.id = members.teamId WHERE teams.captainDiscordName = members.discordName) AND (members.teamId IS NULL OR members.teamId = '')", (queryErr, results) => {
             // Always release the connection back to the pool
             connection.release();
 
