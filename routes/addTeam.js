@@ -33,7 +33,7 @@ const addTeam = async (req, res) => {
         location, 
         preferredTimeToWork, 
         classificationLevel, 
-        preferredSkills, 
+        preferredSkillsets, 
         image 
       ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     `;
