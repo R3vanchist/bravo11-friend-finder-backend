@@ -10,7 +10,7 @@ function getUseCase(req, res) {
     }
 
     connection.query(
-      "SELECT * FROM usecases WHERE id = ?",
+      "SELECT id, title, pocName, pocDiscordName, company, desiredDeliverable, hasData, desiredSkillsets, description, classificationLevel, location, teamId FROM usecases WHERE id = ?",
       [id],
       (queryErr, results) => {
         // Always release the connection back to the pool

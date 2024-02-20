@@ -7,7 +7,7 @@ function getTeams(req, res) {
             return res.status(500).send('Error connecting to the database');
         }
 
-        connection.query('SELECT * FROM teams', (queryErr, results) => {
+        connection.query('SELECT id, teamName, useCase, captainDiscordName, gitRepoUrl, location, preferredTimeToWork, classificationLevel, preferredSkillsets FROM teams', (queryErr, results) => {
             // Always release the connection back to the pool
             connection.release();
 

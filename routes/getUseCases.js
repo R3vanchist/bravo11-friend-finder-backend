@@ -7,7 +7,7 @@ function getUseCases(req, res) {
             return res.status(500).send('Error connecting to the database');
         }
 
-        connection.query('SELECT * FROM usecases', (queryErr, results) => {
+        connection.query('SELECT id, title, pocName, pocDiscordName, company, desiredDeliverable, hasData, desiredSkillsets, description, classificationLevel, location, teamId FROM usecases', (queryErr, results) => {
             // Always release the connection back to the pool
             connection.release();
 

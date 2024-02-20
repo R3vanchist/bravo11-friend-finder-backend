@@ -10,7 +10,7 @@ function getTeam(req, res) {
     }
 
     connection.query(
-      "SELECT * FROM teams WHERE id = ?",
+      "SELECT id, teamName, useCase, captainDiscordName, gitRepoUrl, location, preferredTimeToWork, classificationLevel, preferredSkillsets FROM teams WHERE id = ?",
       [id],
       (queryErr, results) => {
         // Always release the connection back to the pool
